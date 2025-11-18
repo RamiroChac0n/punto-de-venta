@@ -1,23 +1,28 @@
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import {GlobalStyles, MyRoutes} from './index'
 import {Device} from './styles/breakpoints'
 import { Sidebar } from './components/organism/sidebar/Sidebar'
+import { useThemeStore } from './store/ThemeStore'
 
 function App() {
 
+  const {themeStyle} = useThemeStore()
+
   return (
-    <Container>
-      <GlobalStyles />
-      <section className='contentSidebar'>
-        <Sidebar />
-      </section>
-      <section className='contentMenuHamburguer'>
-        Menu
-      </section>
-      <section className='contentRouters'>
-        <MyRoutes />
-      </section>
-    </Container>
+    <ThemeProvider theme={themeStyle}>
+      <Container>
+        <GlobalStyles />
+        <section className='contentSidebar'>
+          <Sidebar />
+        </section>
+        <section className='contentMenuHamburguer'>
+          Menu
+        </section>
+        <section className='contentRouters'>
+          <MyRoutes />
+        </section>
+      </Container>
+    </ThemeProvider>
   )
 }
 
