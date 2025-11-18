@@ -3,9 +3,11 @@ import {GlobalStyles, MyRoutes} from './index'
 import {Device} from './styles/breakpoints'
 import { Sidebar } from './components/organism/sidebar/Sidebar'
 import { useThemeStore } from './store/ThemeStore'
+import { useState } from 'react'
 
 function App() {
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const {themeStyle} = useThemeStore()
 
   return (
@@ -13,9 +15,9 @@ function App() {
       <Container>
         <GlobalStyles />
         <section className='contentSidebar'>
-          <Sidebar />
+          <Sidebar state={sidebarOpen} setState={()=>setSidebarOpen(!sidebarOpen)}/>
         </section>
-        <section className='contentMenuHamburguer'>
+        <section className='contentMenuhambur'>
           Menu
         </section>
         <section className='contentRouters'>
@@ -34,7 +36,7 @@ const Container = styled.main`
     display: none;
     background-color: rgba(78,45,78,0.5);
   }
-  .contentMenuHamburguer{
+  .contentMenuhambur{
     position: absolute;
     background-color: rgba(220, 20, 20, 0.5);
   }
@@ -48,7 +50,7 @@ const Container = styled.main`
     .contentSidebar{
       display: initial;
     }
-    .contentMenuHamburguer{
+    .contentMenuhambur{
       display: none;
     }
     .contentRouters{
