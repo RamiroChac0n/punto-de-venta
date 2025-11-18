@@ -1,5 +1,6 @@
 import {styled} from 'styled-components'
-import { InputText2, Title } from '../../index'
+import { Btnsave, InputText2, Linea, Title } from '../../index'
+import {v} from '../../styles/variables'
 
 export function LoginTemplate(){
     return(
@@ -15,8 +16,13 @@ export function LoginTemplate(){
                         </InputText2>
                         <InputText2>
                             <input className='form__field' placeholder='contraseña' type='password'/>
-                        </InputText2>                        
+                            <Btnsave titulo='INGRESAR' bgcolor='#1CB0F6' color='255,255,255' width='100%'/>
+                        </InputText2>              
                     </form>
+                    <Linea >
+                        <span>0</span>
+                    </Linea>
+                    <Btnsave titulo='Google' bgcolor='#ffff' icono={<v.iconogoogle />}/>
                 </div>
             </section>
         </Container>
