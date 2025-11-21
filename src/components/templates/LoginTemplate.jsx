@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import { Btnsave, InputText2, Linea, Title } from "../../index";
 import { v } from "../../styles/variables";
 import { Device } from "../../styles/breakpoints";
+import { Footer } from "../organism/Footer";
 
 export function LoginTemplate() {
   return (
@@ -31,6 +32,7 @@ export function LoginTemplate() {
         </Linea>
         <Btnsave titulo="Google" bgcolor="#ffff" icono={<v.iconogoogle />} />
       </div>
+      <Footer />
     </Container>
   );
 }
@@ -41,6 +43,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-direction: column;
   .card {
     display: flex;
     flex-direction: column;
