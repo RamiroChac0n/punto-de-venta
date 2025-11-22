@@ -1,66 +1,68 @@
-import styled, { ThemeProvider } from 'styled-components'
-import {GlobalStyles, MyRoutes} from './index'
-import {Device} from './styles/breakpoints'
-import { Sidebar } from './components/organism/sidebar/Sidebar'
-import { useThemeStore } from './store/ThemeStore'
-import { useState } from 'react'
+import styled, { ThemeProvider } from "styled-components";
+import {AuthContextProvider,GlobalStyles, MyRoutes } from "./index";
+import { Device } from "./styles/breakpoints";
+import { Sidebar } from "./components/organism/sidebar/Sidebar";
+import { useThemeStore } from "./store/ThemeStore";
+import { useState } from "react";
 
 function App() {
-
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const {themeStyle} = useThemeStore()
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { themeStyle } = useThemeStore();
 
   return (
     <ThemeProvider theme={themeStyle}>
-      <Container className={sidebarOpen?'active':''}>
-        <GlobalStyles />
-        <section className='contentSidebar'>
-          <Sidebar state={sidebarOpen} setState={()=>setSidebarOpen(!sidebarOpen)}/>
-        </section>
-        <section className='contentMenuhambur'>
-          Menu
-        </section>
-        <section className='contentRouters'>
-          <MyRoutes />
-        </section>
-      </Container>
+      <AuthContextProvider>
+        <Container className={sidebarOpen ? "active" : ""}>
+          <GlobalStyles />
+          <section className="contentSidebar">
+            <Sidebar
+              state={sidebarOpen}
+              setState={() => setSidebarOpen(!sidebarOpen)}
+            />
+          </section>
+          <section className="contentMenuhambur">Menu</section>
+          <section className="contentRouters">
+            <MyRoutes />
+          </section>
+        </Container>
+      </AuthContextProvider>
     </ThemeProvider>
-  )
+  );
 }
 
 const Container = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   transition: 0.1s ease-in-out;
-  color: ${({theme})=>theme.text};
+  color: ${({ theme }) => theme.text};
   // background-color: black;
-  .contentSidebar{
+  .contentSidebar {
     display: none;
     // background-color: rgba(78,45,78,0.5);
   }
-  .contentMenuhambur{
+  .contentMenuhambur {
     position: absolute;
     // background-color: rgba(220, 20, 20, 0.5);
   }
-  .contentRouters{
+  .contentRouters {
     // background-color: rgba(224, 20, 224, 0.5);
     grid-column: 1;
     width: 100%;
   }
   @media ${Device.tablet} {
     grid-template-columns: 88px 1fr;
-    &.active{
+    &.active {
       grid-template-columns: 260px 1fr;
     }
-    .contentSidebar{
+    .contentSidebar {
       display: initial;
     }
-    .contentMenuhambur{
+    .contentMenuhambur {
       display: none;
     }
-    .contentRouters{
+    .contentRouters {
       grid-column: 2;
     }
   }
-`
-export default App
+`;
+export default App;

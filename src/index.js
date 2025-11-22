@@ -9,6 +9,7 @@ export * from './components/organism/formularios/InputText2';
 export * from './components/organism/sidebar/Sidebar';
 export * from './components/templates/HomeTemplate';
 export * from './components/templates/LoginTemplate';
+export * from './context/AuthContext';
 export * from './main';
 export * from './pages/Home';
 export * from './pages/Login';
