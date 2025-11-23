@@ -9,7 +9,35 @@ export async function InsertarCategorias(p, file) {
       title: "Oops...",
       text: error.message,
     });
+    return;
   }
+  const img = file.size;
+  if(img != undefined){
+      const nuevo_id = data;
+      const urlImagen = await subirImagen(nuevo_id, file)
+  }
+}
 
-  const nuevo_id = data;
+async function subirImagen(idcategoria, file) {
+  const ruta = "categorias/" + idcategoria;
+  const { data, error } = await supabase.storage
+    .from("imagenes")
+    .upload(ruta, file, {
+      cacheControl: "0",
+      upsert: true,
+    });
+  if (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: error.message,
+    });
+    return;
+  }
+  if (data) {
+    const { data: urlimagen } = await supabase.storage
+      .from("imagenes")
+      .getPublicUrl(ruta);
+    return urlimagen;
+  }
 }
